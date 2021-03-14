@@ -14,5 +14,17 @@ namespace TTUFit
         {
             InitializeComponent();
         }
+
+        int count = 0;
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            count++;
+            ((Button)sender).Text = $"You clicked {count} times.";
+        }
+
+        private async void NavigateButton_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainMenu());
+        }
     }
 }

@@ -4,9 +4,14 @@
              x:Class="TTUFit.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="AntiqueWhite" Padding="24" CornerRadius="0">
+        <Frame BackgroundColor="Cyan" Padding="24" CornerRadius="0">
             <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
+        
+        <Button Text="Click Me" Clicked="Handle_Clicked"/>
+        <Button Text="Second Page" BackgroundColor="Black" Clicked="NavigateButton_OnClicked"/>
+
+
         <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
         <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
         <Label FontSize="16" Padding="30,24,30,0">
