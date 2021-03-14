@@ -14,5 +14,15 @@ namespace TTUFit
         {
             InitializeComponent();
         }
+
+        private async void LogIn_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainMenu());
+        }
+
+        private void NavigateExit_OnClicked(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
     }
 }
