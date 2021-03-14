@@ -17,9 +17,31 @@ namespace TTUFit
             InitializeComponent();
         }
 
-        private async void NavigateButton_OnClicked(object sender, EventArgs e)
+        private async void NavigateViewMacros_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new ViewMacros());
+        }
+
+        private async void NavigateGoals_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Goals());
+        }
+
+        private async void NavigateDining_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DiningOptions());
+        }
+
+        int count;
+        private void Count_OnClicked(object sender, EventArgs e)
+        {
+            count++;
+            ((Button)sender).Text = $"You clicked {count} times.";
+        }
+
+        private void NavigateExit_OnClicked(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
     }
 }

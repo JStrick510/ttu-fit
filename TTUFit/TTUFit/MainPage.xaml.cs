@@ -15,16 +15,14 @@ namespace TTUFit
             InitializeComponent();
         }
 
-        int count = 0;
-        void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            count++;
-            ((Button)sender).Text = $"You clicked {count} times.";
-        }
-
-        private async void NavigateButton_OnClicked(object sender, EventArgs e)
+        private async void LogIn_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MainMenu());
+        }
+
+        private void NavigateExit_OnClicked(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
     }
 }
