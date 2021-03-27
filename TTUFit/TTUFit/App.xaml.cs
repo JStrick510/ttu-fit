@@ -6,6 +6,8 @@ namespace TTUFit
 {
     public partial class App : Application
     {
+        public static Boolean IsUserLoggedIn = false;
+
         public App()
         {
             InitializeComponent();
