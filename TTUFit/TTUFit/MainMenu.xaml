@@ -3,6 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TTUFit.MainMenu"
              BackgroundColor="#383838">
+    
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="Logo"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start"/>
+            <Label Text="TTUFit"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="StartAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   TextColor="White"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="LogOut" Clicked="OnLogout_Clicked"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
             <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
@@ -15,9 +34,6 @@
             <Button Text="??" BackgroundColor="#FF6161" Clicked="Count_OnClicked"></Button>
             <Button Text="Exit" BackgroundColor="#FF6161" Clicked="NavigateExit_OnClicked"/>
             
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

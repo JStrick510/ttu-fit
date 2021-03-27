@@ -12,9 +12,6 @@
             <Button Text="Edit" BackgroundColor="#FF6161" Clicked="NavigateEditMacros_OnClicked"></Button>
             <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
             
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

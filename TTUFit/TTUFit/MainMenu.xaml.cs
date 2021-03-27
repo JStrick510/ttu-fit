@@ -43,5 +43,14 @@ namespace TTUFit
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
+
+        async void OnLogout_Clicked(object sender, EventArgs e)
+        {
+
+            App.IsUserLoggedIn = false;
+            Navigation.InsertPageBefore(new LoginPage(), this);
+            await Navigation.PopAsync();
+
+        }
     }
 }
