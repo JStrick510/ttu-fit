@@ -34,7 +34,7 @@ namespace DBHandle
 	public class Set_Up
 	{
 		string Filepath = "D:\\Documents\\TTU_Nutrition_Facts";
-		List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
+		public List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
 		public void Generate_Contents()
 		{
 
@@ -86,7 +86,7 @@ namespace DBHandle
 				newS = newS.Replace(">", "");
 				newS = Regex.Replace(newS, "[\\d*]", "@");
 				//Console.WriteLine(newS + "\n");
-				string[] AllP = newS.Split(" @");
+				string[] AllP = newS.Split(new string[] { " @" }, StringSplitOptions.None);
 				if (L.Contains("| LABEL"))
 				{
 					CurrentLabel = L.Replace("| LABEL", "").Replace("Serving Size", "").Replace("180 2 24 1 4  Wheat, Milk, Soy", "")
@@ -122,7 +122,7 @@ namespace DBHandle
 					if (isLab)
 					{
 						L[a] = L[a].Replace(":", "");
-						string[] GetLab = L[a].Split("Serving Size");
+						string[] GetLab = L[a].Split(new string[] { "Serving Size" }, StringSplitOptions.None);
 						if (GetLab.Length > 1)
 						{
 							string newL = GetLab[0] + " | LABEL";
@@ -235,22 +235,35 @@ namespace DBHandle
 			return FS.ToString();
 		}
 
-		public List<Dining_Location> get_TTU_Meal_Data()
-        {
-			return TTU_Meal_Data;
-        }
+		public List<string> DL_Names()
+		{
+			List<string> DLNames = new List<string>();
+			for (int a = 0; a < TTU_Meal_Data.Count; a++)
+			{
+				DLNames.Add(TTU_Meal_Data[a].get_Name());
+			}
+
+			return DLNames;
+		}
 
 	}
 
-	class Dining_Location
+	public class Dining_Location
 	{
 		private string Name;
 		private Dictionary<string, List<Food>> SortedFoods = new Dictionary<string, List<Food>>();
 		private List<Food> AllFood = new List<Food>();
+
+		public List<string> All_Labels = new List<string>();
 		//Use Dictionary to hold Food Items, Key would be type of food, Value would be Food Object
 		public Dining_Location(string N)
 		{
 			Name = N;
+		}
+
+		public string get_Name()
+		{
+			return Name;
 		}
 
 		public void Add_Food(Food Item)
@@ -259,30 +272,31 @@ namespace DBHandle
 		}
 
 		public Dictionary<string, List<Food>> getSortedFood()
-        {
+		{
 			SortedFoods.Clear();
-			for(int a = 0; a < AllFood.Count; a++)
-            {
+			for (int a = 0; a < AllFood.Count; a++)
+			{
 				string TOF = AllFood[a].get_Type();
 				//Check if the key exists, if it doesn't, create a new List and put the current food in it
 				//Else if the Key is found, get the List, Add the food to it, put the list back into the dictionary
-				if(SortedFoods.ContainsKey(TOF))
-                {
+				if (SortedFoods.ContainsKey(TOF))
+				{
 					SortedFoods[TOF].Add(AllFood[a]);
-                }
-                else
-                {
+				}
+				else
+				{
 					List<Food> NewList = new List<Food>();
 					NewList.Add(AllFood[a]);
 					SortedFoods.Add(TOF, NewList);
-                }
-            }
+					All_Labels.Add(TOF);
+				}
+			}
 
 			return SortedFoods;
-        }
+		}
 	}
 
-	class Food
+	public class Food
 	{
 
 		private string Name;
@@ -428,19 +442,19 @@ namespace DBHandle
 		}
 
 		public string get_ServingSize()
-        {
+		{
 			return ServingS;
-        }
+		}
 
 		public string get_AllergyContents()
-        {
+		{
 			return Allergy_Contents;
-        }
+		}
 
 		public bool isVegan()
-        {
+		{
 			return VeganFriendly;
-        }
+		}
 
 
 		public void Print_All()
