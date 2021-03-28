@@ -11,6 +11,7 @@
 
             <Button Text="Menu" BackgroundColor="#FF6161" Clicked="NavigateMenu_OnClicked"></Button>
             <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
+            <Button x:Name="btnOpenMaps" Text="Open Maps" BackgroundColor="#FF6161"></Button>
 
         </StackLayout>
     </ContentPage.Content>
