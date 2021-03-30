@@ -21,7 +21,7 @@ namespace TTUFit
 
         private void BtnOpenMaps_Clicked(object sender, EventArgs e)
         {
-            Location location = new Location();
+            Location location = new Location(33.5844, -101.8747);
             Map.OpenAsync(location);
         }
 
