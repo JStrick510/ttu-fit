@@ -105,7 +105,7 @@ namespace DBHandle
 
 				//Console.WriteLine(L + "\n");
 			}
-
+			DL.getSortedFood();
 			return DL;
 		}
 
@@ -251,9 +251,8 @@ namespace DBHandle
 	public class Dining_Location
 	{
 		private string Name;
-		private Dictionary<string, List<Food>> SortedFoods = new Dictionary<string, List<Food>>();
+		public Dictionary<string, List<Food>> SortedFoods = new Dictionary<string, List<Food>>();
 		private List<Food> AllFood = new List<Food>();
-
 		public List<string> All_Labels = new List<string>();
 		//Use Dictionary to hold Food Items, Key would be type of food, Value would be Food Object
 		public Dining_Location(string N)
@@ -274,6 +273,7 @@ namespace DBHandle
 		public Dictionary<string, List<Food>> getSortedFood()
 		{
 			SortedFoods.Clear();
+			All_Labels.Clear();
 			for (int a = 0; a < AllFood.Count; a++)
 			{
 				string TOF = AllFood[a].get_Type();
