@@ -2,9 +2,6 @@
 
 public class goal
 {
-	int calculateDialyCals();
-	int calculateBMR();
-	int calculateMaintenenceCal();
 	public enum Gender // this can come fom acount creation/information and can not be modifued
     {
 		Female;
@@ -22,7 +19,7 @@ public class goal
 	public int currentWeight { get; set; } //In lbs
 	public int goalWeight { get; set; } //In lbs
 	public int height { get; set; } // given in inches
-	public int dailyCals { get; set; }
+	public dailyCals { get; set; }
 	public Activity activity; // This is how often someone works out/is acitve per week
 	public readonly Gender gender;
 	// A way we can implement saving is to use the email as a key to upload/download to database
@@ -47,32 +44,34 @@ public class goal
 		public int currentFat { get; set; }
 		public int currentCarb { get; set; }
 		public int currentPro { get; set; }
-
+		
 		// This class will house methods that will work with meal data updates and will display progress bars, charts, and graphs as well
 
 	}
 
 	// some of the funtions could possibly be combined/optimized later on 
 	
-	public int calculateBMR() // This calculates the Basal Metobolic Rate ,or resting calorise burned per day
-    {
-		int BMR;
-
-		if (goal.gender == Gender.Male) // Adult Male (unsure if syntax is correct) 
+	public double calculateBMR() // This calculates the Basal Metobolic Rate ,or resting calorise burned per day
 		{
-			BMR = 66 + (6.3 * currentWeight) + (12.9 * height) - (6.8 * age);
-			return BMR;
-		}
-		else { // Adult Female
-			BMR = 655 + (4.3 * currentWeight) + (4.7 * height) - (4.7 * age);
-			return BMR;
+			int BMR;
+
+			if (goal.gender == Gender.Male) // Adult Male (unsure if syntax is correct) 
+				{
+				BMR = 66 + (6.3 * currentWeight) + (12.9 * height) - (6.8 * age);
+				return BMR;
+				}
+			else // Adult Female
+				{ 
+					BMR = 655 + (4.3 * currentWeight) + (4.7 * height) - (4.7 * age);
+					return BMR;
+				}
 		}
 
-	public int calculateMaintenenceCal(int bmr) // This calcualtes how many calories the user burns per day (unsure if syntax is correct as well) 
+	public double calculateMaintenenceCal(double bmr) // This calcualtes how many calories the user burns per day (unsure if syntax is correct as well) 
 		{
 			enum caseSwitch = activity;
-			int = mainCal;
-			int BMR = bmr;
+			double = mainCal;
+			double BMR = bmr;
 			switch (caseSwitch)
 			{
 				case Activity.Seditary:
@@ -96,7 +95,7 @@ public class goal
 
 	public void calculateDialyCals() //This calulates the daily calories the user needs per day based on their goals; updates dailyCals
     {
-	int calDailyCals;
+	double calDailyCals;
 	// 3500 cal in a lb of fat, thus -3500 cals a week = lose 1 pound a week. -7000 per week is 2 lbs and so on
 	// Come up with question of how many pounds a week do you want to lose, and take that number and multiply times 3500 and subtract it by maintence calories * 7 (for the week)
 	// then divie the value by 7 to find daily calories
