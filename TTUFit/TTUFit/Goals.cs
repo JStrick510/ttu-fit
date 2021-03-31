@@ -110,11 +110,11 @@ public class Goal
 				calDailyCals = mc * 7 - (perWeekLbs * 3500); // Weekly total Calories for weight loss
 			}
 			else if (this.goalWeight == this.currentWeight) // User wants to maintain Weight
-            {
-				this.dailyCals = (int)mc;
-            }
-            else // User wants to Gain weight
-            {
+           		{
+				calDailyCals = mc * 7;
+           		}
+           		else // User wants to Gain weight
+           		{
 				calDailyCals = mc * 7 + (perWeekLbs * 3500); // Weekly total Calories for weight gain
 			}
 			this.dailyCals = (int)calDailyCals/7;
