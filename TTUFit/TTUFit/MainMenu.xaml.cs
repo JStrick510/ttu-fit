@@ -39,6 +39,11 @@ namespace TTUFit
             ((Button)sender).Text = $"You clicked {count} times.";
         }
 
+        private async void NavigateQR_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new QR());
+        }
+
         private void NavigateExit_OnClicked(object sender, EventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
