@@ -2,11 +2,11 @@
 
 public class Goal
 	{
-		public enum Gender // this can come fom acount creation/information and can not be modifued
-		{
-			Female,
-			Male
-		}
+        public enum Gender // this can come fom acount creation/information and can not be modifued
+        {
+			Female,// = 0
+			Male // = 1
+        }
 		public enum Activity // Activity level as determined by user based on the following calories
 		{
 			Seditary = 1, // Little to no exersize
@@ -24,26 +24,29 @@ public class Goal
 		public Gender gender;
 		// A way we can implement saving is to use the email as a key to upload/download to database
 
-		public Goal(int a, int cw, int gw, int h, int dcal, Activity act, Gender gn) // Constucts goal
+		public Goal(int age, int currentweight, int goalweight, int height, int dailycal, Activity act, Gender gender) // Constucts goal
 		{
-			this.age = a;
-			this.currentWeight = cw;
-			this.goalWeight = gw;
-			this.height = h;
-			this.dailyCals = dcal;
+			this.age = age;
+			this.currentWeight = currentweight;
+			this.goalWeight = goalweight;
+			this.height = height;
+			this.dailyCals = dailycal;
 			this.activity = act;
-			this.gender = gn;
+			this.gender = gender;
+		}
+
+		public Goal() { 
 		}
 
 		public class Nutrition
 		{
-			public int fatGoal { get; set; }
-			public int carbGoal { get; set; }
-			public int proGoal { get; set; }
-			public int currentCals { get; set; }
-			public int currentFat { get; set; }
-			public int currentCarb { get; set; }
-			public int currentPro { get; set; }
+			public int FatGoal { get; set; }
+			public int CarbGoal { get; set; }
+			public int ProGoal { get; set; }
+			public int CurrentCals { get; set; }
+			public int CurrentFat { get; set; }
+			public int CurrentCarb { get; set; }
+			public int CurrentPro { get; set; }
 
 			// This class will house methods that will work with meal data updates and will display progress bars, charts, and graphs as well
 
@@ -91,22 +94,26 @@ public class Goal
 			return mainCal;
 		}
 
-		public void calculateDialyCals(double mainCal) //This calulates the daily calories the user needs per day based on their goals; updates dailyCals
+		public void CalculateDialyCals(double mainCal, float perweekLbs) //This calulates the daily calories the user needs per day based on their goals; updates dailyCals
 		{
 			double calDailyCals = 0;
 			double mc = mainCal; // The user's maintenance calories
-			float perWeekLbs = 1; // This will  be the users specfic goal on how many pounds a week they want to lose/Gain
+			float perWeekLbs = perweekLbs; // This will  be the users specfic goal on how many pounds a week they want to lose/Gain
 
 			// 3500 cal in a lb of fat, thus -3500 cals a week = lose 1 pound a week. -7000 per week is 2 lbs and so on
 			// Come up with question of how many pounds a week do you want to lose, and take that number and multiply times 3500 and subtract it by maintence calories * 7 (for the week)
 			// then divie the value by 7 to find daily calories
 			// We will assume weight gain is adding to the maintenance calories
 
-			if (this.goalWeight < this.currentWeight) 
+			if (this.goalWeight < this.currentWeight) // User wants to lose weight
 			{
 				calDailyCals = mc * 7 - (perWeekLbs * 3500); // Weekly total Calories for weight loss
 			}
-            else 
+			else if (this.goalWeight == this.currentWeight) // User wants to maintain Weight
+            {
+				this.dailyCals = (int)mc;
+            }
+            else // User wants to Gain weight
             {
 				calDailyCals = mc * 7 + (perWeekLbs * 3500); // Weekly total Calories for weight gain
 			}
