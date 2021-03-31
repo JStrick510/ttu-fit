@@ -1,7 +1,10 @@
 ﻿
 
-using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
+
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Parser;
+using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,19 +25,23 @@ namespace DBHandle
 	 * ->Within Food Item list Calories, Serving Size (Obj), 
 	 */
 
+
 	public class Program
 	{
 		static void Main(string[] args)
 		{
 			Set_Up SE = new Set_Up();
 			SE.Generate_Contents();
+
 		}
 	}
 
 	public class Set_Up
 	{
-		string Filepath = "D:\\Documents\\TTU_Nutrition_Facts";
-		public List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
+		//"D:\\Documents\\TTU_Nutrition_Facts";
+		string Filepath = "../../TTU_Nutrition_Facts/";
+
+		List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
 		public void Generate_Contents()
 		{
 
@@ -46,21 +53,42 @@ namespace DBHandle
 				//Console.WriteLine("-----------------------------\n");
 			}
 
+			//for (int i = 0; i < TTU_Meal_Data.Count; i++)
+			//         {
+			//	Dining_Location DL = TTU_Meal_Data[i];
+			//	Console.WriteLine(DL.get_Name());
+			//	for(int b = 0; b < DL.All_Labels.Count; b++)
+			//             {
+			//		Console.WriteLine("-" + DL.All_Labels[b]);
+			//             }
+			//	Console.WriteLine("------------------------");
+			//         }
+
 		}
 
 		public string ExtractTextFromPdf(string path)
 		{
-			using (PdfReader reader = new PdfReader(path))
-			{
-				StringBuilder text = new StringBuilder();
+			PdfDocument pdfDoc = new PdfDocument(new PdfReader(path));
 
-				for (int i = 1; i <= reader.NumberOfPages; i++)
-				{
-					text.Append(PdfTextExtractor.GetTextFromPage(reader, i));
-				}
+			Rectangle rect = new Rectangle(36, 750, 523, 56);
+			FilteredEventListener listener = new FilteredEventListener();
 
-				return text.ToString();
-			}
+			// Create a text extraction renderer
+			LocationTextExtractionStrategy extractionStrategy = listener
+					.AttachEventListener(new LocationTextExtractionStrategy());
+
+			// Note: If you want to re-use the PdfCanvasProcessor, you must call PdfCanvasProcessor.reset()
+			PdfCanvasProcessor parser = new PdfCanvasProcessor(listener);
+			parser.ProcessPageContent(pdfDoc.GetFirstPage());
+
+			// Get the resultant text after applying the custom filter
+			String actualText = extractionStrategy.GetResultantText();
+
+			pdfDoc.Close();
+
+			// See the resultant text in the console
+			//Console.WriteLine(actualText);
+			return actualText;
 		}
 
 		private Dining_Location Create_Obj(string PDFN)
@@ -218,7 +246,8 @@ namespace DBHandle
 		private string FormatHeader(string RawH)
 		{
 			StringBuilder FS = new StringBuilder();
-			string Header = RawH.Replace("Fall", "").Replace("2020", "").Replace("-", "").Replace(".pdf", "").Replace(Filepath + "\\", "");
+			string Header = RawH.Replace("Fall", "").Replace("2020", "").Replace("-", "").Replace(".pdf", "").Replace(Filepath + "\\", "")
+				.Replace("../../TTU_Nutrition_Facts/", "");
 
 			//Skip over the first value
 			FS.Append(Header[0]);
@@ -235,6 +264,11 @@ namespace DBHandle
 			return FS.ToString();
 		}
 
+		public List<Dining_Location> get_TTU_Meal_Data()
+		{
+			return TTU_Meal_Data;
+		}
+
 		public List<string> DL_Names()
 		{
 			List<string> DLNames = new List<string>();
@@ -248,12 +282,13 @@ namespace DBHandle
 
 	}
 
+
 	public class Dining_Location
 	{
 		private string Name;
 		public Dictionary<string, List<Food>> SortedFoods = new Dictionary<string, List<Food>>();
-		private List<Food> AllFood = new List<Food>();
 		public List<string> All_Labels = new List<string>();
+		private List<Food> AllFood = new List<Food>();
 		//Use Dictionary to hold Food Items, Key would be type of food, Value would be Food Object
 		public Dining_Location(string N)
 		{
@@ -288,6 +323,7 @@ namespace DBHandle
 					List<Food> NewList = new List<Food>();
 					NewList.Add(AllFood[a]);
 					SortedFoods.Add(TOF, NewList);
+
 					All_Labels.Add(TOF);
 				}
 			}
