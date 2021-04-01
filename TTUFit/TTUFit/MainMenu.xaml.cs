@@ -32,13 +32,6 @@ namespace TTUFit
             await Navigation.PushAsync(new DiningOptions());
         }
 
-        int count;
-        private void Count_OnClicked(object sender, EventArgs e)
-        {
-            count++;
-            ((Button)sender).Text = $"You clicked {count} times.";
-        }
-
         private async void NavigateQR_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new QR());

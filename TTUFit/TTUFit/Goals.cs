@@ -1,12 +1,14 @@
 ﻿using System;
 
-public class Goal
+namespace TTUFit
+{
+	public class Goal
 	{
-        public enum Gender // this can come fom acount creation/information and can not be modifued
-        {
+		public enum Gender // this can come fom acount creation/information and can not be modifued
+		{
 			Female,// = 0
 			Male // = 1
-        }
+		}
 		public enum Activity // Activity level as determined by user based on the following calories
 		{
 			Seditary = 1, // Little to no exersize
@@ -35,8 +37,9 @@ public class Goal
 			this.gender = gender;
 		}
 
-		public Goal() { 
-		}
+		//public Goal()
+		//{
+		//}
 
 		public class Nutrition
 		{
@@ -110,14 +113,15 @@ public class Goal
 				calDailyCals = mc * 7 - (perWeekLbs * 3500); // Weekly total Calories for weight loss
 			}
 			else if (this.goalWeight == this.currentWeight) // User wants to maintain Weight
-           		{
+			{
 				calDailyCals = mc * 7;
-           		}
-           		else // User wants to Gain weight
-           		{
+			}
+			else // User wants to Gain weight
+			{
 				calDailyCals = mc * 7 + (perWeekLbs * 3500); // Weekly total Calories for weight gain
 			}
-			this.dailyCals = (int)calDailyCals/7;
+			this.dailyCals = (int)calDailyCals / 7;
 			return;
 		}
 	}
+}
