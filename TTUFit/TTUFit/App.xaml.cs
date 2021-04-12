@@ -13,7 +13,7 @@ namespace TTUFit
         public App()
         {
             InitializeComponent();
-            SE.Generate_Contents();
+            SE.ReadTxtFile();
             MainPage = new NavigationPage(new MainPage());
         }
 

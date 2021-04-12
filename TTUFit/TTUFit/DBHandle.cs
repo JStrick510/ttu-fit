@@ -1,6 +1,10 @@
 ﻿
 
 
+
+using Android.Content;
+using Android.Content.Res;
+using Android.OS;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser;
@@ -9,8 +13,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+
+
 
 namespace DBHandle
 {
@@ -25,25 +32,65 @@ namespace DBHandle
 	 * ->Within Food Item list Calories, Serving Size (Obj), 
 	 */
 
+	
+
 
 	public class Program
 	{
 		static void Main(string[] args)
 		{
 			Set_Up SE = new Set_Up();
-			SE.Generate_Contents();
+			//SE.Generate_Contents();
+			SE.ReadTxtFile();
 
+			
 		}
+
 	}
 
 	public class Set_Up
 	{
 		//"D:\\Documents\\TTU_Nutrition_Facts";
-		string Filepath = "../../TTU_Nutrition_Facts/";
-
+		//"../../TTU_Nutrition_Facts/";
+		string Filepath = Android.App.Application.Context.FilesDir.AbsolutePath;
 		List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
-		public void Generate_Contents()
+
+		public void ReadTxtFile()
+        {
+			Dining_Location Current_DL = null;
+			string L;
+			AssetManager assets = Android.App.Application.Context.Assets;
+			using (StreamReader sr = new StreamReader(assets.Open("TTU_Meal_Objs.txt")))
+			{
+				while ((L = sr.ReadLine()) != null)
+				{
+					//Console.WriteLine(L);
+					//Check if there is a new DiningLocation
+					if (L.Contains("->"))
+					{
+						string Title = L.Substring(2);
+						Dining_Location DL = new Dining_Location(Title);
+						if (Current_DL != null)
+						{
+							Current_DL.getSortedFood();
+							TTU_Meal_Data.Add(Current_DL);
+						}
+						Current_DL = DL;
+					}
+					else if (!L.Equals(""))
+					{
+						Food F = new Food(L);
+						Current_DL.Add_Food(F);
+					}
+				}
+			}
+			
+			//Take the Content stuff and load in DIning_Location and Food_Items
+		}
+
+        public void Generate_Contents()
 		{
+			Console.WriteLine(Filepath);
 
 			string[] PDFS = Directory.GetFiles(Filepath);
 			//PDFS.Length
@@ -127,8 +174,8 @@ namespace DBHandle
 				else if (AllP.Length == 7)
 				{
 					//Add to the list of food in the Dining Location
-					Food NewF = new Food(Header, CurrentLabel, L);
-					DL.Add_Food(NewF);
+					//Food NewF = new Food(Header, CurrentLabel, L);
+					//DL.Add_Food(NewF);
 				}
 
 				//Console.WriteLine(L + "\n");
@@ -283,7 +330,7 @@ namespace DBHandle
 	}
 
 
-	public class Dining_Location
+    public class Dining_Location
 	{
 		private string Name;
 		public Dictionary<string, List<Food>> SortedFoods = new Dictionary<string, List<Food>>();
@@ -351,30 +398,31 @@ namespace DBHandle
 
 		private bool VeganFriendly;
 
-		public Food(string DL, string Label, string RawD)
+		public Food(string D)
 		{
-			//Format the string, parse data, ect
-			string newS = RawD.Replace("<", "").Replace(">", "");
-			int index = 0;
-			int lastI = 0;
-			for (int a = 0; a < newS.Length - 1; a++)
-			{
-				char Part = newS[a];
-				char nextPart = newS[a + 1];
-				if (Part.Equals(' ') && char.IsNumber(nextPart) && index < 7)
-				{
-					string Data = newS.Substring(lastI, a - lastI);
-					SetConstruct(index, Data);
-					index++;
-					lastI = a;
-				}
-			}
+			Apply_New_Data(D);
+			////Format the string, parse data, ect
+			//string newS = RawD.Replace("<", "").Replace(">", "");
+			//int index = 0;
+			//int lastI = 0;
+			//for (int a = 0; a < newS.Length - 1; a++)
+			//{
+			//	char Part = newS[a];
+			//	char nextPart = newS[a + 1];
+			//	if (Part.Equals(' ') && char.IsNumber(nextPart) && index < 7)
+			//	{
+			//		string Data = newS.Substring(lastI, a - lastI);
+			//		SetConstruct(index, Data);
+			//		index++;
+			//		lastI = a;
+			//	}
+			//}
 
-			string D = newS.Substring(lastI);
-			SetConstruct(index, D);
+			//string D = newS.Substring(lastI);
+			//SetConstruct(index, D);
 
-			Type_Of_Food = Label;
-			Dining_Place = DL;
+			//Type_Of_Food = Label;
+			//Dining_Place = DL;
 
 			//Print_All();
 		}
@@ -499,6 +547,30 @@ namespace DBHandle
 				+ " | " + Fiber + " | " + Protein + " | " + VeganFriendly + " | " + Allergy_Contents;
 
 			Console.WriteLine(D + "\n");
+
+		}
+
+		public float ConvertF(string N)
+        {
+			string Frm = Regex.Replace(N, "[^0-9.]", "");
+			return float.Parse(Frm, CultureInfo.InvariantCulture.NumberFormat); 
+        }
+		public void Apply_New_Data(string D)
+        {
+			string[] Data = D.Split('|');
+			Dining_Place = Data[0];
+			Type_Of_Food = Data[1];
+			Name = Data[2];
+			ServingS = Data[3];
+			Calories = ConvertF(Data[4]);
+			Fat = ConvertF(Data[5]);
+			Carbs = ConvertF(Data[6]);
+			Fiber = ConvertF(Data[7]);
+			Protein = ConvertF(Data[8]);
+			VeganFriendly = Convert.ToBoolean(Data[9]);
+			Allergy_Contents = Data[10];
+
+			Print_All();
 
 		}
 
