@@ -24,19 +24,17 @@ namespace TTUFit
 
         async void SignUpButtonClicked(object sender, EventArgs e)
         {
-            var user = new User
-            {
-                Username = usernameEntry.Text,
-                Password = passwordEntry.Text,
-            };
-            var signUpSucceeded = AreDetailsValid(user);
+            App.user.Username = usernameEntry.Text;
+            App.user.Password = passwordEntry.Text;
+
+            var signUpSucceeded = AreDetailsValid(App.user);
             if (signUpSucceeded)
             {
                 var rootpage = Navigation.NavigationStack.FirstOrDefault();
                 if (rootpage != null)
                 {
                     App.IsUserLoggedIn = true;
-                    Navigation.InsertPageBefore(new MainPage(), Navigation.NavigationStack.First());
+                    Navigation.InsertPageBefore(new Profile(), Navigation.NavigationStack.First());
                     await Navigation.PopToRootAsync();
                 }
                 else

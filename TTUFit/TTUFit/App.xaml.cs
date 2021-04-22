@@ -7,6 +7,7 @@ namespace TTUFit
     public partial class App : Application
     {
         public static Boolean IsUserLoggedIn = false;
+        public static User user = new User();
 
         public App()
         {

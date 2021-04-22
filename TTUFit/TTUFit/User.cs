@@ -4,8 +4,13 @@ using System.Text;
 
 namespace TTUFit
 {
-    class User
+    public class User
     {
+        public User()
+        {
+
+        }
+
         public String Username { get; set; }
 
         public String Password { get; set; }

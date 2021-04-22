@@ -28,6 +28,7 @@
                    IsTextPredictionEnabled="False"
                    x:Name="passwordEntry"/>
             <Label Text="Please enter a password (8-16 characters)"/>
+
             <Button Text="Submit" BackgroundColor="#FF6161" Clicked="SignUpButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
