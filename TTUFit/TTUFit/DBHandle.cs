@@ -2,19 +2,11 @@
 
 
 
-using Android.Content;
 using Android.Content.Res;
-using Android.OS;
-using iText.Kernel.Geom;
-using iText.Kernel.Pdf;
-using iText.Kernel.Pdf.Canvas.Parser;
-using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 
 
@@ -41,7 +33,7 @@ namespace DBHandle
 		{
 			Set_Up SE = new Set_Up();
 			//SE.Generate_Contents();
-			SE.ReadTxtFile();
+			//SE.ReadTxtFile();
 
 			
 		}
@@ -87,7 +79,8 @@ namespace DBHandle
 			
 			//Take the Content stuff and load in DIning_Location and Food_Items
 		}
-
+		
+		/*
         public void Generate_Contents()
 		{
 			Console.WriteLine(Filepath);
@@ -310,6 +303,8 @@ namespace DBHandle
 
 			return FS.ToString();
 		}
+
+		*/
 
 		public List<Dining_Location> get_TTU_Meal_Data()
 		{
