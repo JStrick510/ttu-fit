@@ -1,8 +1,5 @@
 ﻿
-
-
-
-using Android.Content.Res;
+using Xamarin.Essentials;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -44,41 +41,44 @@ namespace DBHandle
 	{
 		//"D:\\Documents\\TTU_Nutrition_Facts";
 		//"../../TTU_Nutrition_Facts/";
-		string Filepath = Android.App.Application.Context.FilesDir.AbsolutePath;
+		//string Filepath = Android.App.Application.Context.FilesDir.AbsolutePath;
 		List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
 
-		public void ReadTxtFile()
+		public async void ReadTxtFile()
         {
 			Dining_Location Current_DL = null;
 			string L;
-			AssetManager assets = Android.App.Application.Context.Assets;
-			using (StreamReader sr = new StreamReader(assets.Open("TTU_Meal_Objs.txt")))
+			using (Stream stream = await FileSystem.OpenAppPackageFileAsync("TTU_Meal_Objs.txt"))
 			{
-				while ((L = sr.ReadLine()) != null)
+				using (StreamReader sr = new StreamReader(stream))
 				{
-					//Console.WriteLine(L);
-					//Check if there is a new DiningLocation
-					if (L.Contains("->"))
+					while ((L = sr.ReadLine()) != null)
 					{
-						string Title = L.Substring(2);
-						Dining_Location DL = new Dining_Location(Title);
-						if (Current_DL != null)
+						//Console.WriteLine(L);
+						//Check if there is a new DiningLocation
+						if (L.Contains("->"))
 						{
-							Current_DL.getSortedFood();
-							TTU_Meal_Data.Add(Current_DL);
+							string Title = L.Substring(2);
+							Dining_Location DL = new Dining_Location(Title);
+							if (Current_DL != null)
+							{
+								Current_DL.getSortedFood();
+								TTU_Meal_Data.Add(Current_DL);
+							}
+							Current_DL = DL;
 						}
-						Current_DL = DL;
-					}
-					else if (!L.Equals(""))
-					{
-						Food F = new Food(L);
-						Current_DL.Add_Food(F);
+						else if (!L.Equals(""))
+						{
+							Food F = new Food(L);
+							Current_DL.Add_Food(F);
+						}
 					}
 				}
 			}
+					
+		}
 			
 			//Take the Content stuff and load in DIning_Location and Food_Items
-		}
 		
 		/*
         public void Generate_Contents()
