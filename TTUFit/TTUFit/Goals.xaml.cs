@@ -17,16 +17,25 @@ namespace TTUFit
             InitializeComponent();
         }
 
-        int count;
+        int count = 0;
         private void Count_OnClicked(object sender, EventArgs e)
         {
             count++;
             ((Button)sender).Text = $"You clicked {count} times.";
         }
 
+        private void Update_OnClicked(object sender, EventArgs e)
+        {
+            age.Text = "Age: " + App.goals.age;
+            height.Text = "Height: " + App.goals.height;
+            weight.Text = "Weight: " + App.goals.currentWeight;
+        }
+
         private async void NavigateMainMenu_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MainMenu());
         }
+
+
     }
 }
