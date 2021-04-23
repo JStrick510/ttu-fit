@@ -32,6 +32,11 @@ namespace TTUFit
             await Navigation.PushAsync(new DiningOptions());
         }
 
+        private async void NavigateProfile_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Profile());
+        }
+
         private async void NavigateQR_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new QR());
