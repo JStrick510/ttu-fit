@@ -8813,9 +8813,6 @@ namespace TTUFit.Droid
 			// aapt resource value: 0x7F08008B
 			public const int scrollable = 2131230859;
 			
-			// aapt resource value: 0x7F08008B
-			public const int scrollable = 2131230859;
-			
 			// aapt resource value: 0x7F080088
 			public const int scrollIndicatorDown = 2131230856;
 			
@@ -8850,22 +8847,19 @@ namespace TTUFit.Droid
 			public const int search_plate = 2131230867;
 			
 			// aapt resource value: 0x7F080094
-			public const int search_voice_btn = 2131230868;
-			
-			// aapt resource value: 0x7F080096
-			public const int selected = 2131230870;
+			public const int search_src_text = 2131230868;
 			
 			// aapt resource value: 0x7F080095
 			public const int search_voice_btn = 2131230869;
 			
 			// aapt resource value: 0x7F080097
-			public const int shellcontent_appbar = 2131230871;
+			public const int selected = 2131230871;
 			
 			// aapt resource value: 0x7F080096
 			public const int select_dialog_listview = 2131230870;
 			
 			// aapt resource value: 0x7F080098
-			public const int shellcontent_toolbar = 2131230872;
+			public const int shellcontent_appbar = 2131230872;
 			
 			// aapt resource value: 0x7F080099
 			public const int shellcontent_toolbar = 2131230873;
@@ -9524,31 +9518,43 @@ namespace TTUFit.Droid
 			public const int fab_transformation_scrim_behavior = 2131558445;
 			
 			// aapt resource value: 0x7F0D002E
-			public const int mtrl_chip_close_icon_content_description = 2131558446;
+			public const int fab_transformation_sheet_behavior = 2131558446;
+			
+			// aapt resource value: 0x7F0D0001
+			public const int Hello = 2131558401;
 			
 			// aapt resource value: 0x7F0D002F
-			public const int overflow_tab_title = 2131558447;
+			public const int hide_bottom_view_on_scroll_behavior = 2131558447;
 			
 			// aapt resource value: 0x7F0D0030
-			public const int password_toggle_content_description = 2131558448;
+			public const int library_name = 2131558448;
 			
 			// aapt resource value: 0x7F0D0031
-			public const int path_password_eye = 2131558449;
+			public const int mtrl_chip_close_icon_content_description = 2131558449;
 			
 			// aapt resource value: 0x7F0D0032
-			public const int path_password_eye_mask_strike_through = 2131558450;
+			public const int overflow_tab_title = 2131558450;
 			
 			// aapt resource value: 0x7F0D0033
-			public const int path_password_eye_mask_visible = 2131558451;
+			public const int password_toggle_content_description = 2131558451;
 			
 			// aapt resource value: 0x7F0D0034
-			public const int path_password_strike_through = 2131558452;
+			public const int path_password_eye = 2131558452;
 			
 			// aapt resource value: 0x7F0D0035
-			public const int search_menu_title = 2131558453;
+			public const int path_password_eye_mask_strike_through = 2131558453;
 			
 			// aapt resource value: 0x7F0D0036
-			public const int status_bar_notification_info_overflow = 2131558454;
+			public const int path_password_eye_mask_visible = 2131558454;
+			
+			// aapt resource value: 0x7F0D0037
+			public const int path_password_strike_through = 2131558455;
+			
+			// aapt resource value: 0x7F0D0038
+			public const int search_menu_title = 2131558456;
+			
+			// aapt resource value: 0x7F0D0039
+			public const int status_bar_notification_info_overflow = 2131558457;
 			
 			static String()
 			{
