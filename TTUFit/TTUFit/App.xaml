@@ -3,6 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TTUFit.App">
     <Application.Resources>
-
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="#FF6161"/>
+            <Setter Property="BarTextColor" Value="White"/>
+        </Style>
+        <Style TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="#383838"/>
+        </Style>
     </Application.Resources>
 </Application>

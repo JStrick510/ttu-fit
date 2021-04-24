@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TTUFit.Profile">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+                <Label Text="Profile" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            
+
+            <Entry Placeholder="Age" 
+                   PlaceholderColor="White"
+                   ClearButtonVisibility="WhileEditing"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="False"
+                   x:Name="ageEntry"/>
+            <Label Text="Please enter your age"/>
+
+            <Entry Placeholder="Gender" 
+                PlaceholderColor="White"
+                ClearButtonVisibility="WhileEditing"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                x:Name="genderEntry"/>
+            <Label Text="Please enter M or F for your gender"/>
+
+            <Entry Placeholder="Current Weight" 
+                PlaceholderColor="White"
+                ClearButtonVisibility="WhileEditing"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                x:Name="currentWeightEntry"/>
+            <Label Text="Please enter your current weight in pounds."/>
+
+            <Entry Placeholder="Goal Weight" 
+                PlaceholderColor="White"
+                ClearButtonVisibility="WhileEditing"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                x:Name="goalWeightEntry"/>
+            <Label Text="Please enter your goal weight in pounds."/>
+
+            <Entry Placeholder="Height" 
+                PlaceholderColor="White"
+                ClearButtonVisibility="WhileEditing"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                x:Name="heightEntry"/>
+            <Label Text="Please enter your height in inches."/>
+
+            <Entry Placeholder="Activity Level" 
+                PlaceholderColor="White"
+                ClearButtonVisibility="WhileEditing"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                x:Name="activityEntry"/>
+            <Label Text="Please enter your activity level."/>
+            <Label Text="0 - Seditary, 1 - Lightly Active, 2 - Moderately Active,"/>
+            <Label Text="3 - Very Active, 4 - Extremely Active"/>
+
+            <Button Text="Submit" BackgroundColor="#FF6161" Clicked="Update_OnClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
