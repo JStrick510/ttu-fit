@@ -12,8 +12,6 @@ namespace TTUFit
 
         public static Goal goals = new Goal(20, 250, 200, 60, 3000, Goal.Activity.Seditary,Goal.Gender.Male);
 
-        DBHandle.Set_Up SE = new DBHandle.Set_Up();
-       
         public App()
         {
             InitializeComponent();
