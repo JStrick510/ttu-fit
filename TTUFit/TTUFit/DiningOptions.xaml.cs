@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace TTUFit
 {
@@ -15,6 +16,13 @@ namespace TTUFit
         public DiningOptions()
         {
             InitializeComponent();
+            btnOpenMaps.Clicked += BtnOpenMaps_Clicked;
+        }
+
+        private void BtnOpenMaps_Clicked(object sender, EventArgs e)
+        {
+            Location location = new Location(33.5844, -101.8747);
+            Map.OpenAsync(location);
         }
 
         private async void NavigateMenu_OnClicked(object sender, EventArgs e)
