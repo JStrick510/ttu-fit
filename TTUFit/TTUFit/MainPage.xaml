@@ -4,36 +4,32 @@
              x:Class="TTUFit.MainPage"
              BackgroundColor="#383838">
 
-    <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Image Source="Logo"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="Start"/>
-            <Label Text="TTUFit"
-                   HorizontalOptions="StartAndExpand"
-                   VerticalOptions="StartAndExpand"
-                   FontAttributes="Bold"
-                   FontSize="20"/>
-        </StackLayout>
-    </NavigationPage.TitleView>
+    <StackLayout>
+        <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+            <Label Text="Welcome to TTUFit!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
-                <Label Text="Welcome to TTUFit!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-            </Frame>
-
-            <Image Source="Logo"
+        <Image Source="Logo"
                Aspect="Fill"
                HeightRequest="{OnPlatform iOS=200, Android=200}"
                WidthRequest="{OnPlatform iOS=200, Android=200}"
                HorizontalOptions="Center"/>
 
-            <Button Text="Log In" BackgroundColor="#FF6161" Clicked="LogIn_OnClicked"/>
-            <Button Text="Sign Up" BackgroundColor="#FF6161" Clicked="SignUp_OnClicked"/>
-            <Button Text="Exit" BackgroundColor="#FF6161" Clicked="NavigateExit_OnClicked"/>
+        <Button Text="Log In" BackgroundColor="#FF6161" Clicked="LogIn_OnClicked"/>
+        <Button Text="Exit" BackgroundColor="#FF6161" Clicked="NavigateExit_OnClicked"/>
 
-        </StackLayout>
-    </ContentPage.Content>
-    
+        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+
 </ContentPage>

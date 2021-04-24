@@ -17,19 +17,7 @@ namespace TTUFit
 
         private async void LogIn_OnClicked(object sender, EventArgs e)
         {
-            if(App.IsUserLoggedIn || App.debug)
-            {
-                await Navigation.PushAsync(new MainMenu());
-            }
-            else
-            {
-                await Navigation.PushAsync(new LoginPage());
-            }
-        }
-
-        private async void SignUp_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new SignUp());
+            await Navigation.PushAsync(new MainMenu());
         }
 
         private void NavigateExit_OnClicked(object sender, EventArgs e)

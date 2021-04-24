@@ -3,25 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TTUFit.MainMenu"
              BackgroundColor="#383838">
-    
-    <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Image Source="Logo"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="Start"/>
-            <Label Text="TTUFit"
-                   HorizontalOptions="StartAndExpand"
-                   VerticalOptions="StartAndExpand"
-                   FontAttributes="Bold"
-                   FontSize="20"
-                   TextColor="White"/>
-        </StackLayout>
-    </NavigationPage.TitleView>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="LogOut" Clicked="OnLogout_Clicked"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <StackLayout>
             <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
@@ -31,10 +12,12 @@
             <Button Text="View/Edit Macros" BackgroundColor="#FF6161" Clicked="NavigateViewMacros_OnClicked"></Button>
             <Button Text="View/Edit Goals" BackgroundColor="#FF6161" Clicked="NavigateGoals_OnClicked"></Button>
             <Button Text="Find Dining Locations" BackgroundColor="#FF6161" Clicked="NavigateDining_OnClicked"></Button>
-            <Button Text="Profile" BackgroundColor="#FF6161" Clicked="NavigateProfile_OnClicked"></Button>
-            <Button Text="QR Scanner" BackgroundColor="#FF6161" Clicked="NavigateQR_OnClicked"></Button>
+            <Button Text="??" BackgroundColor="#FF6161" Clicked="Count_OnClicked"></Button>
             <Button Text="Exit" BackgroundColor="#FF6161" Clicked="NavigateExit_OnClicked"/>
             
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

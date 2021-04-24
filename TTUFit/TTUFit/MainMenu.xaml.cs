@@ -32,28 +32,16 @@ namespace TTUFit
             await Navigation.PushAsync(new DiningOptions());
         }
 
-        private async void NavigateProfile_OnClicked(object sender, EventArgs e)
+        int count;
+        private void Count_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Profile());
-        }
-
-        private async void NavigateQR_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new QR());
+            count++;
+            ((Button)sender).Text = $"You clicked {count} times.";
         }
 
         private void NavigateExit_OnClicked(object sender, EventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
-        }
-
-        async void OnLogout_Clicked(object sender, EventArgs e)
-        {
-
-            App.IsUserLoggedIn = false;
-            Navigation.InsertPageBefore(new LoginPage(), this);
-            await Navigation.PopAsync();
-
         }
     }
 }
