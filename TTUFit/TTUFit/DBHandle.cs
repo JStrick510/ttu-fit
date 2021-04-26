@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
-
-
+using System.Linq;
 
 namespace DBHandle
 {
@@ -32,7 +31,6 @@ namespace DBHandle
 			//SE.Generate_Contents();
 			//SE.ReadTxtFile();
 
-			
 		}
 
 	}
@@ -44,6 +42,9 @@ namespace DBHandle
 		//string Filepath = Android.App.Application.Context.FilesDir.AbsolutePath;
 		List<Dining_Location> TTU_Meal_Data = new List<Dining_Location>();
 
+		/* ReadTxtFile parses data fron the .txt file stored in the Assets directory
+		 * and creates Dining Location objects and created Food objects within each Dining Location Object
+		 */
 		public async void ReadTxtFile()
         {
 			Dining_Location Current_DL = null;
@@ -80,6 +81,7 @@ namespace DBHandle
 			
 			//Take the Content stuff and load in DIning_Location and Food_Items
 		
+		//Depreciated Functions
 		/*
         public void Generate_Contents()
 		{
@@ -305,12 +307,15 @@ namespace DBHandle
 		}
 
 		*/
+		//---------------------
 
+		//Getter method for a List of All Dining Location Objects
 		public List<Dining_Location> get_TTU_Meal_Data()
 		{
 			return TTU_Meal_Data;
 		}
 
+		//Getter method for a List of strings that contains the names of all the Dining Locations
 		public List<string> DL_Names()
 		{
 			List<string> DLNames = new List<string>();
@@ -330,23 +335,26 @@ namespace DBHandle
 		private string Name;
 		public Dictionary<string, List<Food>> SortedFoods = new Dictionary<string, List<Food>>();
 		public List<string> All_Labels = new List<string>();
-		private List<Food> AllFood = new List<Food>();
+		public List<Food> AllFood = new List<Food>();
 		//Use Dictionary to hold Food Items, Key would be type of food, Value would be Food Object
 		public Dining_Location(string N)
 		{
 			Name = N;
 		}
 
+		//Getter method for the Name of the Dining Location object
 		public string get_Name()
 		{
 			return Name;
 		}
 
+		//Add_Food takes a Food object and adds it to the All_Food public List of Food Objects
 		public void Add_Food(Food Item)
 		{
 			AllFood.Add(Item);
 		}
 
+		//Getter method for a Dictionary of Key-> String, Value -> List of Food objects 
 		public Dictionary<string, List<Food>> getSortedFood()
 		{
 			SortedFoods.Clear();
@@ -383,7 +391,7 @@ namespace DBHandle
 		private string Type_Of_Food;
 
 		private string ServingS;
-		private int Amount;
+		private float Amount;
 
 		private float Calories;
 		private float Fat;
@@ -395,6 +403,7 @@ namespace DBHandle
 
 		public Food(string D)
 		{
+			Amount = 1;
 			Apply_New_Data(D);
 			////Format the string, parse data, ect
 			//string newS = RawD.Replace("<", "").Replace(">", "");
@@ -475,6 +484,16 @@ namespace DBHandle
 		}
 		//Handle Serving Size increase/decreases
 
+		public string get_Name()
+        {
+			return Name;
+        }
+
+		public void Reset_Serving()
+        {
+			Amount = 1;
+        }
+
 		public void Increase_Serving()
 		{
 			Amount++;
@@ -515,7 +534,7 @@ namespace DBHandle
 			return Protein * Amount;
 		}
 
-		public int get_ServingAmount()
+		public float get_ServingAmount()
 		{
 			return Amount;
 		}
@@ -539,7 +558,7 @@ namespace DBHandle
 		public void Print_All()
 		{
 			string D = Dining_Place + " | " + Type_Of_Food + " | " + Name + " | " + ServingS + " | " + Calories + " | " + Fat + " | " + Carbs
-				+ " | " + Fiber + " | " + Protein + " | " + VeganFriendly + " | " + Allergy_Contents;
+				+ " | " + Fiber + " | " + Protein + " | " + VeganFriendly + " | " + Allergy_Contents + " | " + Amount;
 
 			Console.WriteLine(D + "\n");
 
@@ -571,6 +590,180 @@ namespace DBHandle
 
 	}
 
+
+	//------------------------------------------------
+	//Algorithm stuff for Meal Data grabber
+
+	public class Generate_Meal_Plan
+    {
+		//Places to check the labels for 'Breakfast' include -> Fresh Plate Nutritionals For Week Day Menu and Sams Sub Nutritionals
+		string[] Breakfast_DL = new string[] { "Bistro Nutritionals", "Fresh Plate Nutritionals For Week Day Menu", 
+			"Market Breakfast", "Market Day Break Cafe", "Raider Exchange Nutritionals", "Sams Murray Nutrition", 
+			"Sams Sub Nutritionals", "Sams West Breakfast", "Sneed Nutritionals", "Union Grill Nutrition",
+			"Wall Gates Breakfast And Smoothie Central"};
+
+		string[] Lunch_Dinner_DL = new string[] { "1923 Nutritionals", "Commons Greens And Things Salads", 
+			"Commons Just Say Cheese Sandwiches And Soups", "Commons Kahns Wok", "Commons Kluckrs Chicken", "Commons Parrilla Mexican", 
+			"Green Works", "Market Carvery", "Market Chop Stix Grill And Wings", "Market Salads Sandwiches Subs And Spuds", "Market Tech Mex", 
+			"Paciugo Nutritionals", "Raider Pit B B Q Nutritionals", "Sams Place Late Night", "Smart Chocies Nutritionals", "Sneed Nutritionals",
+			"Tios Fajitas", "Tuscan Kitchen", "Wall Gates Asian And Salad", "Wall Gates Pizza And Pasta", "Wall Gates Red Raider Cantina", 
+			"Wall Gates The Grill", "West End Grill", "Zis Nutritionals"};
+		//Hard code places that serve mainly breakfast, Lunch, Dinner foods
+		//Pass in total Calories, fats, protiens, Carbs, total Meals for the Day, and List of DiningLocations
+
+		List<Dining_Location> Breakfast_Places = new List<Dining_Location>();
+		List<Dining_Location> Lunch_Dinner_Places = new List<Dining_Location>();
+
+		//Constructor for the class, pass in the List of Dining Locations that you can get from DBHandle.SetUp.get_TTU_Meal_Data()
+		public Generate_Meal_Plan(List<Dining_Location> DL)
+        {
+			for(int a = 0; a < DL.Count; a++)
+            {
+				string DL_Name = DL[a].get_Name();
+				if(Breakfast_DL.Any(DL_Name.Contains))
+                {
+					Breakfast_Places.Add(DL[a]);
+                }
+                else
+                {
+					Lunch_Dinner_Places.Add(DL[a]);
+                }
+            }
+        }
+		
+		//pass in 5 integers, function returns an array (size = TotalMeals) of Food objects in order of
+		//meal sequence(0 = Breakfast, 1 = Lunch, ect)
+		public Food[] Request_Meal_Plan(int TotalCal, int TotalProtein, int TotalCarbs, int TotalFats, int TotalMeals)
+        {
+			Food[] MealPlan = new Food[TotalMeals];
+			
+			for(int a = 0; a < MealPlan.Length; a++)
+            {
+				bool isB = true;
+				if(a > 0)
+                {
+					isB = false;
+                }
+
+				Food NewFood = null;
+				while(NewFood == null)
+                {
+					NewFood = Get_Food(TotalCal / TotalMeals, TotalProtein / TotalMeals, TotalCarbs / TotalMeals, TotalFats / TotalMeals, isB);
+                }
+
+				MealPlan[a] = NewFood;
+
+            }
+
+			return MealPlan;
+        }
+
+		private Food Get_Food(int TCal, int TPro, int TCar, int TFat, bool isB)
+        {
+			Random random = new System.Random();
+			List<Food> AllFood = new List<Food>();
+			if (isB)
+            {
+				Dining_Location PlaceToEat = Breakfast_Places[random.Next(0, Breakfast_Places.Count)];
+				AllFood = PlaceToEat.AllFood;
+				if(PlaceToEat.get_Name().Equals("Fresh Plate Nutritionals For Week Day Menu") || 
+					PlaceToEat.get_Name().Equals("Sams Sub Nutritionals"))
+                {
+					//Throw out food from list that do not contain "Breakfast" in their label
+					for(int a = 0; a < AllFood.Count; a++)
+                    {
+						string Label = AllFood[a].get_Type();
+						if(!Label.Contains("Breakfast"))
+                        {
+							AllFood.RemoveAt(a);
+							a--;
+                        }
+                    }
+                }
+
+			}
+            else
+            {
+				Dining_Location PlaceToEat = Lunch_Dinner_Places[random.Next(0, Lunch_Dinner_Places.Count)];
+				AllFood = PlaceToEat.AllFood;
+			}
+
+			AllFood = Reset_SS(AllFood);
+
+			//If didn't find food, increase serving size to see if that will help
+			List<Food> Potential_Options = Options(AllFood, TCal, TPro, TCar, TFat);
+			if (Potential_Options.Count == 0)
+			{
+				Potential_Options = Options(Increase_SS(AllFood), TCal, TPro, TCar, TFat);
+			}
+			//--Finding Food with increased Serving Size---------------------------------
+
+
+			if (Potential_Options.Count == 0)
+			{
+				return null;
+			}
+			else
+			{
+				return Potential_Options[random.Next(0, Potential_Options.Count)];
+			}
+
+        }
+		
+		private List<Food> Options(List<Food> AllFood, int TCal, int TPro, int TCar, int TFat)
+		{
+			List<Food> Potential_Options = new List<Food>();
+			for (int a = 0; a < AllFood.Count; a++)
+			{
+				Food Item = AllFood[a];
+				float Cal = Item.get_Calories();
+				float Pro = Item.get_Protein();
+				float Car = Item.get_Carbs();
+				float Fat = Item.get_Fat();
+				if (TCal > Cal - 50 && TCal < Cal + 50)
+				{
+					//Console.WriteLine(TCal + " vs " + Cal + " -> Calorie Testing View");
+					//Console.WriteLine(TPro + " vs " + Pro + " -> Protein Testing View");
+					//Console.WriteLine(TCar + " vs " + Car + " -> Carbs Testing View");
+					//Console.WriteLine(TFat + " vs " + Fat + " -> Fats Testing View");
+
+					if (TPro > Pro - 10 && TPro < Pro + 10)
+					{
+						Potential_Options.Add(Item);
+					}
+					else if (TCar > Car - 10 && TCar < Car + 10)
+					{
+						Potential_Options.Add(Item);
+					}
+					else if (TFat > Fat - 10 && TFat < Fat + 10)
+					{
+						Potential_Options.Add(Item);
+					}
+				}
+			}
+			return Potential_Options;
+		}
+
+		private List<Food> Increase_SS(List<Food> AllFood)
+        {
+			for(int a = 0; a < AllFood.Count; a++)
+            {
+				Food Item = AllFood[a];
+				Item.Increase_Serving();
+            }
+			return AllFood;
+        }
+
+		private List<Food> Reset_SS(List<Food> AllFood)
+        {
+			for(int a = 0; a < AllFood.Count; a++)
+            {
+				AllFood[a].Reset_Serving();
+            }
+			return AllFood;
+        }
+
+    }	
 }
 
 
