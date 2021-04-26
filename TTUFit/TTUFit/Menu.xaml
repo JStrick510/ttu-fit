@@ -2,12 +2,43 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TTUFit.Menu"
-             BackgroundColor="#383838">
+             BackgroundColor="#383838"
+             x:Name="MenuPage">
     <ContentPage.Content>
         <StackLayout>
             <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
                 <Label Text="Menus" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
+
+            <Button Text="Update" BackgroundColor="#FF6161" Clicked="Update_OnClicked"></Button>
+            <Label x:Name="displayLabel"
+               Text="Dining Location: 1923 Nutritionals"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+
+            <ListView x:Name="FoodList" ItemsSource="{Binding Source={x:Reference MenuPage}, Path=BindingContext.all_food_items}" IsVisible="True">
+                <ListView.Header>
+                    <Slider Maximum="32" ValueChanged="OnSliderValueChanged" />
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete Item" CommandParameter="{Binding .}">
+                                </MenuItem>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding name}"></Label>
+                                <Label Text="{Binding calories}"></Label>
+                                <Label Text="{Binding protein}"></Label>
+                                <Label Text="{Binding carbs}"></Label>
+                                <Label Text="{Binding fat}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
 
