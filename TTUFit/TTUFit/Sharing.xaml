@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TTUFit.Sharing"
+             BackgroundColor="#383838">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+                <Label Text="Social Media" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+
+            <Entry Text=""
+                   Placeholder="Share your Meal Plan!"
+                   x:Name="EntryShare"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center"/>
+
+            <Button Text="Share" BackgroundColor="#FF6161" x:Name="ButtonShare" Clicked="NavigateShare_OnClicked"></Button>
+            <Button Text="Share File" BackgroundColor="#FF6161" x:Name="ButtonShareFile" Clicked="NavigateShareFile_OnClicked"></Button>
+            <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

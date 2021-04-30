@@ -25,8 +25,8 @@
 
             <Image Source="Logo"
                Aspect="Fill"
-               HeightRequest="{OnPlatform iOS=200, Android=200}"
-               WidthRequest="{OnPlatform iOS=200, Android=200}"
+               HeightRequest= "{OnPlatform iOS=200, Android=200}"
+               WidthRequest= "{OnPlatform iOS=200, Android=200}"
                HorizontalOptions="Center"/>
 
             <Button Text="Log In" BackgroundColor="#FF6161" Clicked="LogIn_OnClicked"/>

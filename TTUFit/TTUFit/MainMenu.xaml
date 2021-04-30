@@ -33,6 +33,7 @@
             <Button Text="Find Dining Locations" BackgroundColor="#FF6161" Clicked="NavigateDining_OnClicked"></Button>
             <Button Text="??" BackgroundColor="#FF6161" Clicked="Count_OnClicked"></Button>
             <Button Text="QR Scanner" BackgroundColor="#FF6161" Clicked="NavigateQR_OnClicked"></Button>
+            <Button Text="Social Media" BackgroundColor="#FF6161" Clicked="NavigateShare_OnClicked"></Button>
             <Button Text="Exit" BackgroundColor="#FF6161" Clicked="NavigateExit_OnClicked"/>
             
         </StackLayout>
