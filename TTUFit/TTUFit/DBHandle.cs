@@ -386,6 +386,7 @@ namespace DBHandle
 	{
 
 		private string Name;
+
 		private string Allergy_Contents;
 		private string Dining_Place;
 		private string Type_Of_Food;
@@ -400,6 +401,32 @@ namespace DBHandle
 		private float Protein;
 
 		private bool VeganFriendly;
+
+		public string name
+		{
+			get { return Name; }
+		}
+
+		public string calories
+		{
+			get { return Calories.ToString(); }
+		}
+
+		public string protein
+		{
+			get { return Protein.ToString(); }
+		}
+
+		public string carbs
+		{
+			get { return Carbs.ToString(); }
+		}
+
+		public string fat
+		{
+			get { return Fat.ToString(); }
+		}
+
 
 		public Food(string D)
 		{
