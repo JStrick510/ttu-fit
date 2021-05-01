@@ -24,12 +24,18 @@ namespace TTUFit
         //People can write about their meal plan with explanation and share it by this button. 
         private async void NavigateShare_OnClicked(object sender, EventArgs e)
         {
-            await Share.RequestAsync(new ShareTextRequest
+            try
             {
-                Text = EntryShare.Text,
-                Title = "Share!"
+                await Share.RequestAsync(new ShareTextRequest
+                {
 
-            });
+                    Text = EntryShare.Text,
+                    Title = "Share!"
+                });
+            }
+            catch (Exception)
+            {
+            }
         }
         //People can make their meal plan as a text file and share it by this button.
         private async void NavigateShareFile_OnClicked(object sender, EventArgs e)
@@ -40,11 +46,18 @@ namespace TTUFit
 
             var path = string.Empty;
             path = Path.Combine(FileSystem.CacheDirectory, "Meal Plan.txt");
-            await Share.RequestAsync(new ShareFileRequest
+
+            try
             {
-                Title = "Share your File",
-                File = new ShareFile(path)
-            });
+                await Share.RequestAsync(new ShareFileRequest
+                {
+                    Title = "Hello from Xamarin.Essentials",
+                    File = new ShareFile(path)
+                });
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private async void NavigateMainMenu_OnClicked(object sender, EventArgs e)
