@@ -9,7 +9,7 @@ namespace TTUFit
         public static Boolean debug = true;
         public static Boolean IsUserLoggedIn = false;
 
-        public static Goal goals = new(20, 250, 200, 60, 3000, Goal.Activity.VeryActive,Goal.Gender.Male); //test data
+        public static Nutrition nutri = new Nutrition(20, 220, 200, 70, 1.5, Goal.Activity.ModerateleyActive, Goal.Gender.Male); //test data
 
         public App()
         {

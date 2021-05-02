@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTUFit.Android", "TTUFit\TT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTUFit.iOS", "TTUFit\TTUFit.iOS\TTUFit.iOS.csproj", "{43920D44-3F40-4BE3-8BA1-A390054B3496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTUFit", "TTUFit\TTUFit\TTUFit.csproj", "{28979FEB-6673-466D-88CA-06F204237438}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTUFit", "TTUFit\TTUFit\TTUFit.csproj", "{28979FEB-6673-466D-88CA-06F204237438}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74BC1CE6-9780-4166-BB76-842F7C5B8E93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

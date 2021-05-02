@@ -25,22 +25,25 @@ namespace TTUFit
 		public int GoalWeight { get; set; } //In lbs
 		public int Height { get; set; } // given in inches
 		public int DailyCals { get; set; }
+
+		public double PerWeekLbs { get; set; }
 		public Activity activity; // This is how often someone works out/is acitve per week
 		public Gender gender;
 		// A way we can implement saving is to use the email as a key to upload/download to database
 
-		public Goal(int age, int currentweight, int goalweight, int height, int dailycal, Activity act, Gender gender) // Constucts goal
+		public Goal(int age, int currentweight, int goalweight, int height, double pwlbs, Activity act, Gender gender) // Constucts goal
 		{
 			this.Age = age;
 			this.CurrentWeight = currentweight;
 			this.GoalWeight = goalweight;
 			this.Height = height;
-			this.DailyCals = dailycal;
+			this.DailyCals = 0; //Initalized
+			this.PerWeekLbs = pwlbs;
 			this.activity = act;
 			this.gender = gender;
+			CalculateDialyCals(CalculateMaintenenceCal(CalculateBMR()), this.PerWeekLbs); // Calculate DailyCals
 		}
-
-		public Goal()
+            public Goal()
 		{
 		}
 
@@ -86,11 +89,11 @@ namespace TTUFit
 			return mainCal;
 		}
 
-		public void CalculateDialyCals(double mainCal, float perweekLbs) //This calulates the daily calories the user needs per day based on their goals; updates dailyCals
+		public void CalculateDialyCals(double mainCal, double perweekLbs) //This calulates the daily calories the user needs per day based on their goals; updates dailyCals
 		{
 			double calDailyCals = 0;
 			double mc = mainCal; // The user's maintenance calories
-			float perWeekLbs = perweekLbs; // This will  be the users specfic goal on how many pounds a week they want to lose/Gain
+			double perWeekLbs = perweekLbs; // This will  be the users specfic goal on how many pounds a week they want to lose/Gain
 
 			// 3500 cal in a lb of fat, thus -3500 cals a week = lose 1 pound a week. -7000 per week is 2 lbs and so on
 			// Come up with question of how many pounds a week do you want to lose, and take that number and multiply times 3500 and subtract it by maintence calories * 7 (for the week)
@@ -123,10 +126,32 @@ namespace TTUFit
 		public double CurrentCarb { get; set; } // current carb total
 		public double CurrentPro { get; set; } // current protien total
 
-		// This class will house methods that will work with meal data updates and will display progress bars, charts, and graphs as well
+        // This class will house methods that will work with meal data updates and will display progress bars, charts, and graphs as well
 
-		public Nutrition()
+        public Nutrition()
 		{
+			SetGoals(); // Automatically determine goals based on user information 
+
+			// Starting value is 0 at the start of each day
+			this.CurrentCals = 0;
+			this.CurrentCarb = 0;
+			this.CurrentFat = 0;
+			this.CurrentPro = 0;
+
+		}
+
+		public Nutrition(int age, int currentweight, int goalweight, int height, double pwlbs, Activity act, Gender gender) // Constucts Nutrition with Goal paramaters
+		{
+			this.Age = age;
+			this.CurrentWeight = currentweight;
+			this.GoalWeight = goalweight;
+			this.Height = height;
+			this.DailyCals = 0; //Initalized
+			this.PerWeekLbs = pwlbs;
+			this.activity = act;
+			this.gender = gender;
+			CalculateDialyCals(CalculateMaintenenceCal(CalculateBMR()), this.PerWeekLbs); // Calculate DailyCals
+
 			SetGoals(); // Automatically determine goals based on user information 
 
 			// Starting value is 0 at the start of each day
@@ -167,14 +192,14 @@ namespace TTUFit
 			double carb = carbs;
 			double pro = protien;
 
-			this.CurrentCals = fat * 9 + carb * 4 + pro * 4;
+			this.CurrentCals = this.CurrentCals + (fat * 9 + carb * 4 + pro * 4);
 			UpdateCurrentMacros(fat, carb, pro); //update current macros as well
 		}
 		public void UpdateCurrentMacros(double fats, double carbs, double protien)
 		{
-			this.CurrentFat = fats;
-			this.CurrentCarb = carbs;
-			this.CurrentPro = protien;
+			this.CurrentFat = this.CurrentFat + fats;
+			this.CurrentCarb = this.CurrentCarb + carbs;
+			this.CurrentPro = this.CurrentPro + protien;
 		}
 	}
 }

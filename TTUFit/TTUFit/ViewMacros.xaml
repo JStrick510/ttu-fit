@@ -1,17 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:TTUFit"
              x:Class="TTUFit.ViewMacros"
+             
              BackgroundColor="#383838">
-    <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
-                <Label Text="Macros" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-            </Frame>
+    <ContentPage.BindingContext>
+            <local:MacroViewModel x:Name="MacroViewModel"/>
+        </ContentPage.BindingContext>
 
-            <Button Text="Edit" BackgroundColor="#FF6161" Clicked="NavigateEditMacros_OnClicked"></Button>
-            <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
+    <StackLayout>
+        <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+            <Label Text="Macros" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+
+        <chart:SfChart>
+            <chart:SfChart.Title>
+                <chart:ChartTitle Text="Macronutrients"/>
+            </chart:SfChart.Title>
+            <chart:PieSeries
+                ExplodeIndex="1"
+                ItemsSource="{Binding PieData}"
+                XBindingPath="MacroName"
+                YBindingPath="GoalPercent">
+                
+            </chart:PieSeries>
             
-        </StackLayout>
-    </ContentPage.Content>
+        </chart:SfChart>
+
+        <Button Text="Edit" BackgroundColor="#FF6161" Clicked="NavigateEditMacros_OnClicked"></Button>
+        <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
+
+    </StackLayout>
 </ContentPage>

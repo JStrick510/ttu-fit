@@ -5,15 +5,8 @@ using System.Text;
 
 namespace TTUFit
 {
-    public class MealLog : INotifyPropertyChanged
+    public class MealLogFood : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string name)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
         private string foodName;
         private int cals;
         private int fat;
@@ -81,7 +74,7 @@ namespace TTUFit
         }
 
 
-        public MealLog(string name, int cals, int fat, int carb, int pro, double serving)
+        public MealLogFood(string name, int cals, int fat, int carb, int pro, double serving)
         {
             this.FoodName = name;
             this.Cals = cals;
@@ -91,5 +84,12 @@ namespace TTUFit
             this.ServingSize = serving;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string name)
+        {
+            if (this.PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

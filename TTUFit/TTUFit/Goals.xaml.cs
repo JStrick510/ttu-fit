@@ -26,9 +26,9 @@ namespace TTUFit
 
         private void Update_OnClicked(object sender, EventArgs e)
         {
-            age.Text = "Age: " + App.goals.Age;
-            height.Text = "Height: " + App.goals.Height;
-            weight.Text = "Weight: " + App.goals.CurrentWeight;
+            age.Text = "Age: " + App.nutri.Age;
+            height.Text = "Height: " + App.nutri.Height;
+            weight.Text = "Weight: " + App.nutri.CurrentWeight;
         }
 
         private async void NavigateMainMenu_OnClicked(object sender, EventArgs e)

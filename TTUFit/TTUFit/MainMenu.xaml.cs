@@ -18,7 +18,7 @@ namespace TTUFit
         }
         private async void NavigateMealLog_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MealLog());
+            await Navigation.PushAsync(new MealLogFood());
         }
         private async void NavigateViewMacros_OnClicked(object sender, EventArgs e)
         {
