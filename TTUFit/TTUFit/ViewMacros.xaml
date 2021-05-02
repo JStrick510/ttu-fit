@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
-                <Label Text="View Macros" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                <Label Text="Macros" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
             <Button Text="Edit" BackgroundColor="#FF6161" Clicked="NavigateEditMacros_OnClicked"></Button>
