@@ -42,6 +42,11 @@ namespace TTUFit
             await Navigation.PushAsync(new QR());
         }
 
+        private async void NavigateShare_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Sharing());
+        }
+
         private void NavigateExit_OnClicked(object sender, EventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
