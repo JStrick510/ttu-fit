@@ -22,7 +22,7 @@
           
                     <Button Text="Menu" BackgroundColor="#FF6161" Clicked="NavigateMenu_OnClicked"></Button>
          
-            <Button x:Name="btnOpenMaps1" IsVisible="{Binding IsVisible}" Text="The Commons" BackgroundColor="#FF6161"></Button><!---the commons-->
+            <Button x:Name="btnOpenMaps1" IsVisible="{Binding IsVisible}" Text="Directions" BackgroundColor="#FF6161"></Button><!---the commons-->
             <Button x:Name="btnOpenMaps2" IsVisible="{Binding IsVisible}" Text="Directions" BackgroundColor="#FF6161"></Button>
             <Button x:Name="btnOpenMaps3" IsVisible="{Binding IsVisible}" Text="Directions" BackgroundColor="#FF6161"></Button>
             <Button x:Name="btnOpenMaps4" IsVisible="{Binding IsVisible}" Text="Directions" BackgroundColor="#FF6161"></Button>
