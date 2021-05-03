@@ -8,5 +8,6 @@ namespace TTUFit
     {
         public string MacroName{ get; set; }
         public int GoalPercent { get; set; }
+
     }
 }
