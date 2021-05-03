@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TTUFit.GenerateMealPlan">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+                <Label Text="Meal Plan" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <Entry Placeholder="Meals" 
+                   PlaceholderColor="White"
+                   ClearButtonVisibility="WhileEditing"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="False"
+                   x:Name="mealNumberEntry"/>
+            <Label Text="Enter number of meals to generate"/>
+            <Button Text="Generate" BackgroundColor="#FF6161" Clicked="GenerateMealPlan_Click"></Button>
+            <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage> 

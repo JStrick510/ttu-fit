@@ -16,7 +16,7 @@
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand" />
 
-            <ListView x:Name="FoodList" ItemsSource="{Binding Source={x:Reference MenuPage}, Path=BindingContext.all_food_items}" IsVisible="True">
+            <ListView x:Name="FoodList" ItemSelected="Add_Item" ItemsSource="{Binding Source={x:Reference MenuPage}, Path=BindingContext.all_food_items}" IsVisible="True">
                 <ListView.Header>
                     <Slider Maximum="32" ValueChanged="OnSliderValueChanged" />
                 </ListView.Header>
@@ -24,7 +24,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Delete Item" CommandParameter="{Binding .}">
+                                <MenuItem Text="Add" CommandParameter="{Binding .}">
                                 </MenuItem>
                             </ViewCell.ContextActions>
                             <StackLayout Orientation="Horizontal">

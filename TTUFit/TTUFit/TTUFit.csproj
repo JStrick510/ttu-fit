@@ -21,6 +21,10 @@
   <ItemGroup>
     <PackageReference Include="itext7" Version="7.1.14" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.58" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.58" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="19.1.0.58" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="19.1.0.58" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="ZXing.Net" Version="0.16.6" />
@@ -35,6 +39,9 @@
     <EmbeddedResource Update="EditMacros.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="GenerateMealPlan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Goals.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -42,6 +49,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MainMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MealLog.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Menu.xaml">

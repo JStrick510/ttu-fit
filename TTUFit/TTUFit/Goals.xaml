@@ -9,13 +9,12 @@
                 <Label Text="Goals" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
-            <Label Text="Age: " HorizontalTextAlignment="Center" TextColor="White" FontSize="22" x:Name="age"/>
-            <Label Text="Height: " HorizontalTextAlignment="Center" TextColor="White" FontSize="22" x:Name="height"/>
-            <Label Text="Weight: " HorizontalTextAlignment="Center" TextColor="White" FontSize="22" x:Name="weight"/>
+            <Label Text="Goal Weight: " HorizontalTextAlignment="Center" TextColor="White" FontSize="20" x:Name="goalWeight"/>
+            <Label Text="Current Weight: " HorizontalTextAlignment="Center" TextColor="White" FontSize="20" x:Name="currentWeight"/>
+            <Label Text="Weight loss /Week (Lbs): " HorizontalTextAlignment="Center" TextColor="White" FontSize="20" x:Name="lbsweek"/>
+            <Label Text="Daily Calories: " HorizontalTextAlignment="Center" TextColor="White" FontSize="20" x:Name="dailyCals"/>
 
-            <Button Text="Update" BackgroundColor="#FF6161" Clicked="Update_OnClicked"></Button>
-
-            <Button Text="Edit" BackgroundColor="#FF6161" Clicked="Count_OnClicked"></Button>
+            <Button Text="Show Goals" BackgroundColor="#FF6161" Clicked="Update_OnClicked"></Button>
             <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
 
         </StackLayout>

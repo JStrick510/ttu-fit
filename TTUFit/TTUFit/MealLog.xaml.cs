@@ -10,27 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace TTUFit
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Goals : ContentPage
+    public partial class MealLog : ContentPage
     {
-        public Goals()
+        public MealLog()
         {
             InitializeComponent();
-        }
-
-
-        private void Update_OnClicked(object sender, EventArgs e)
-        {
-            goalWeight.Text = "Goal Weight: " + App.nutri.GoalWeight;
-            currentWeight.Text = "Current Weight: " + App.nutri.CurrentWeight;
-            lbsweek.Text = "Weight loss /Week (Lbs): " + App.nutri.PerWeekLbs;
-            dailyCals.Text = "Daily Calories: " + App.nutri.DailyCals;
         }
 
         private async void NavigateMainMenu_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MainMenu());
         }
-
-
     }
 }

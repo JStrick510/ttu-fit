@@ -9,7 +9,14 @@
                 <Label Text="Edit Macros" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
+            <Label Text="Fat Goal: " HorizontalTextAlignment="Center" TextColor="White" FontSize="22" x:Name="fatGoal"/>
+            <Label Text="Carb Goal: " HorizontalTextAlignment="Center" TextColor="White" FontSize="22" x:Name="carbGoal"/>
+            <Label Text="Protien Goal: " HorizontalTextAlignment="Center" TextColor="White" FontSize="22" x:Name="proGoal"/>
+
             <Button Text="View" BackgroundColor="#FF6161" Clicked="NavigateViewMacros_OnClicked"></Button>
+            <Button Text="Show Macros" BackgroundColor="#FF6161" Clicked="Button_Clicked"></Button>
+            <Button Text="Edit" Background="#FF6161" Clicked="EditButton_Clicked"></Button>
+            <Button Text="Back" BackgroundColor="#FF6161" Clicked="NavigateViewMacros_OnClicked"></Button>
             <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
             
         </StackLayout>

@@ -52,5 +52,13 @@ namespace TTUFit
             string output = "Dining Location: " + dl_names[index];
             displayLabel.Text = output;
         }
+
+        void Add_Item(object sender, SelectedItemChangedEventArgs e)
+        {
+            DBHandle.Food food = (DBHandle.Food)e.SelectedItem;
+
+
+            System.Diagnostics.Debug.WriteLine(food.name);
+        }
     }
 }
