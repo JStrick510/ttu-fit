@@ -20,9 +20,11 @@
                 <chart:ChartTitle Text="Macronutrients"/>
             </chart:SfChart.Title>
             <chart:PieSeries
+                EnableAnimation="True"
                 ItemsSource="{Binding PieData}"
                 XBindingPath="MacroName"
-                YBindingPath="GoalPercent">
+                YBindingPath="GoalPercent"
+                EnableSmartLabels="True">
             </chart:PieSeries>
 
             <chart:SfChart.Legend>

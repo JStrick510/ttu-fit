@@ -11,6 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Page1.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Page1.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\logo.png" />
   </ItemGroup>
 
@@ -44,6 +52,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="EditMacros.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="GenerateMealPlan.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Goals.xaml">

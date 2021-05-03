@@ -29,6 +29,7 @@
             </Frame>
 
             <Button Text="Meal Log" BackgroundColor="#FF6161" Clicked="NavigateMealLog_OnClicked"></Button>
+            <Button Text="Create Meal Plan" BackgroundColor="#FF6161" Clicked="NavigateGenerateMealPlan_OnClicked"></Button>
             <Button Text="Macros" BackgroundColor="#FF6161" Clicked="NavigateViewMacros_OnClicked"></Button>
             <Button Text="Goals" BackgroundColor="#FF6161" Clicked="NavigateGoals_OnClicked"></Button>
             <Button Text="Find Dining Locations" BackgroundColor="#FF6161" Clicked="NavigateDining_OnClicked"></Button>
