@@ -13,6 +13,22 @@ namespace TTUFit
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiningOptions : ContentPage
     {
+
+        public List<DBHandle.Food> all_food_items;
+        public List<DBHandle.Dining_Location> meal_data;
+        private double value;
+        public List<string> dl_names;
+        public string[] CommonsNames = { "Commons Greens And Things Salads", "Commons Just Say Cheese Sandwiches And Soups", "Commons Kahns Wok", "Commons Kluckrs Chicken", "Commons Parrilla Mexican" };
+        public string[] MarketNames = { "Market Breakfast", "Market Carvery", "Market Chop Stix Grill And Wings", "Market Day Break Cafe", "Market Salads Sandwiches Subs And Spuds", "Market Tech Mex" };
+        public string[] SUBNames = { "Paciugo Nutritionals", "Sams Sub Nutritionals", "Smart Chocies Nutritionals", "Zis Nutritionals", "1923 Nutritionals", "Bistro Nutritionals" };
+        public string[] SamsWest = { "Green Works", "Sams Place Late Night", "Sams West Breakfast", "Tuscan Kitchen", "West End Grill" };
+        public string[] WestVillage = { "Raider Exchange Nutritionals" };
+        public string[] UnionPlaza = { "Raider Pit B B Q Nutritionals", "Union Grill Nutrition" };
+        public string[] MurrayHall = { "Sams Murray Nutrition" };
+        public string[] SneedHall = { "Sneed Nutritionals" };
+        public string[] WallGates = { "Wall Gates Asian And Salad", "Wall Gates Breakfast And Smoothie Central", "Wall Gates Pizza And Pasta", "Wall Gates Red Raider Cantina", "Wall Gates The Grill" };
+        public string[] GordonBledsoe = { "Fresh Plate Nutritionals For Week Day Menu" };
+
         public DiningOptions()
         {
             InitializeComponent();
@@ -25,9 +41,230 @@ namespace TTUFit
             btnOpenMaps7.Clicked += BtnOpenMaps7_Clicked; // Union Plaza
             btnOpenMaps8.Clicked += BtnOpenMaps8_Clicked; //Murray Hall
             btnOpenMaps9.Clicked += BtnOpenMaps9_Clicked; //Sneed Hall
-            btnOpenMaps10.Clicked += BtnOpenMaps9_Clicked; //Wall Gates
+            btnOpenMaps10.Clicked += BtnOpenMaps10_Clicked; //Wall Gates
+
+            this.BindingContext = this;
+
+            dl_names = App.SE.DL_Names();
+
+            meal_data = App.SE.get_TTU_Meal_Data();
+            int index = Convert.ToInt32(value);
+            all_food_items = meal_data[index].AllFood;
+
+
+
 
         }
+
+        private bool _isVisible = false;
+
+        public new bool IsVisible
+        {
+            get
+            {
+                return _isVisible;
+            }
+            set
+            {
+                _isVisible = true;
+                RaisePropertyChanged("IsVisible");
+            }
+        }
+
+        private void RaisePropertyChanged(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Update_OnClicked(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt32(value);
+            all_food_items = meal_data[index].AllFood;
+
+            foreach (string s in CommonsNames)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = true;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in MarketNames)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = true;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in SUBNames)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = true;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in GordonBledsoe)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = true;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in SamsWest)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = true;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in WestVillage)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = true;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in UnionPlaza)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = true;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in MurrayHall)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = true;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in SneedHall)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = true;
+                    btnOpenMaps10.IsVisible = false;
+                }
+            }
+            foreach (string s in WallGates)
+            {
+                if (s.Contains(dl_names[index]))
+                {
+                    btnOpenMaps1.IsVisible = false;
+                    btnOpenMaps2.IsVisible = false;
+                    btnOpenMaps3.IsVisible = false;
+                    btnOpenMaps4.IsVisible = false;
+                    btnOpenMaps5.IsVisible = false;
+                    btnOpenMaps6.IsVisible = false;
+                    btnOpenMaps7.IsVisible = false;
+                    btnOpenMaps8.IsVisible = false;
+                    btnOpenMaps9.IsVisible = false;
+                    btnOpenMaps10.IsVisible = true;
+                }
+            }
+
+        }
+
+        void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
+        {
+            value = args.NewValue;
+            int index = Convert.ToInt32(value);
+            string output = "Dining Location: " + dl_names[index];
+            displayLabel.Text = output;
+        }
+
+
+        private async void NavigateMenu_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Menu());
+        }
+
+        private async void NavigateMainMenu_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainMenu());
+        }
+
+
+
 
         // The Commons( Greens and things salads, just say cheese sandwhiches and soups, kahns wok, kluckrs chicken, parrilla mexican)
         private void BtnOpenMaps1_Clicked(object sender, EventArgs e)
@@ -77,18 +314,17 @@ namespace TTUFit
         // union plaza (Raider Pit BBQ, Union grill)
         private void BtnOpenMaps7_Clicked(object sender, EventArgs e)
         {
-            Location location = new Location(33.581725, -101.874338);
-            var options = new MapLaunchOptions { Name = "Union Plaza" };
+            Location location = new Location(33.579892, -101.883964);
+            var options = new MapLaunchOptions { Name = "Sams West" };
             Map.OpenAsync(location, options);
         }
-
-        //Murray hall (sams)
         private void BtnOpenMaps8_Clicked(object sender, EventArgs e)
         {
             Location location = new Location(33.586492, -101.878691);
             var options = new MapLaunchOptions { Name = "Sam's at Murray Hall" };
             Map.OpenAsync(location, options);
         }
+
 
         //Sneed Hall (Sneed nutritionals)
         private void BtnOpenMaps9_Clicked(object sender, EventArgs e)
@@ -105,16 +341,5 @@ namespace TTUFit
             var options = new MapLaunchOptions { Name = "Wall/ Gates" };
             Map.OpenAsync(location, options);
         }
-
-        private async void NavigateMenu_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Menu());
-        }
-
-        private async void NavigateMainMenu_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new MainMenu());
-        }
-    
     }
 }
