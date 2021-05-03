@@ -28,8 +28,8 @@
                 <Label Text="Main Menu" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
-            <Button Text="MealLog" BackgroundColor="#FF6161" Clicked="NavigateMealLog_OnClicked"></Button>
-            <Button Text="Macros" BackgroundColor="#FF6161" Clicked="NavigateVieMacros_OnClicked"></Button>
+            <Button Text="Meal Log" BackgroundColor="#FF6161" Clicked="NavigateMealLog_OnClicked"></Button>
+            <Button Text="Macros" BackgroundColor="#FF6161" Clicked="NavigateViewMacros_OnClicked"></Button>
             <Button Text="Goals" BackgroundColor="#FF6161" Clicked="NavigateGoals_OnClicked"></Button>
             <Button Text="Find Dining Locations" BackgroundColor="#FF6161" Clicked="NavigateDining_OnClicked"></Button>
             <Button Text="QR Scanner" BackgroundColor="#FF6161" Clicked="NavigateQR_OnClicked"></Button>

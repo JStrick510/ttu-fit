@@ -20,13 +20,14 @@
                 <chart:ChartTitle Text="Macronutrients"/>
             </chart:SfChart.Title>
             <chart:PieSeries
-                ExplodeIndex="1"
                 ItemsSource="{Binding PieData}"
                 XBindingPath="MacroName"
                 YBindingPath="GoalPercent">
-                
             </chart:PieSeries>
-            
+
+            <chart:SfChart.Legend>
+                <chart:ChartLegend IsVisible="True" IsIconVisible="True"/>
+            </chart:SfChart.Legend>
         </chart:SfChart>
 
         <Button Text="Edit" BackgroundColor="#FF6161" Clicked="NavigateEditMacros_OnClicked"></Button>

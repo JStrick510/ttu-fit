@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:local="clr-namespace:TTUFit"
-             x:Class="TTUFit.MealLogFood"
+             x:Class="TTUFit.MealLog"
              
              BackgroundColor="#383838">
     <ContentPage.BindingContext>
@@ -12,10 +12,15 @@
 
     <StackLayout>
 
+        <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+            <Label Text="Meal Log" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        
         <Syncfusion:SfDataGrid x:Name="dataGrid"
+                               
                                    AutoGenerateColumns="True"
                                    ItemsSource="{Binding MealLogFood}"
-                                   DefaultColumnWidth="120"
+                                   DefaultColumnWidth="130"
                                    ColumnSizer="Star"
                                    AllowDeleting="True"
                                    AllowEditing="True"
@@ -27,10 +32,6 @@
                                    ImeOptions="NoExtractUi">
 
         </Syncfusion:SfDataGrid>
-
-        <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
-            <Label Text="Meal Log" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
 
         <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
 
