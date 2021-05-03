@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:local="clr-namespace:TTUFit"
+             x:Class="TTUFit.MealLog"
+
+             BackgroundColor="#383838">
+    <ContentPage.BindingContext>
+        <local:ViewModel x:Name="ViewModel"/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+
+        <Frame BackgroundColor="#FF6161" Padding="24" CornerRadius="0">
+            <Label Text="Meal Log" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+
+        <Syncfusion:SfDataGrid x:Name="dataGrid"
+
+                                   AutoGenerateColumns="True"
+                                   ItemsSource="{Binding MealLogFood}"
+                                   DefaultColumnWidth="130"
+                                   ColumnSizer="Star"
+                                   AllowDeleting="True"
+                                   AllowEditing="True"
+                                   SelectionMode="SingleDeselect"
+                                   EditTapAction="OnDoubleTap"
+                                   AllowDraggingColumn="False"
+                                   AllowDraggingRow="True"
+                                   NavigationMode="Cell"
+                                   ImeOptions="NoExtractUi">
+
+        </Syncfusion:SfDataGrid>
+
+        <Button Text="Main Menu" BackgroundColor="#FF6161" Clicked="NavigateMainMenu_OnClicked"></Button>
+
+    </StackLayout>
+</ContentPage>

@@ -10,7 +10,7 @@ namespace TTUFit
         public static Boolean IsUserLoggedIn = false;
         public static User user = new User();
         public static DBHandle.Set_Up SE = new DBHandle.Set_Up();
-        public static Goal goals = new Goal(20, 250, 200, 60, 3000, Goal.Activity.Seditary,Goal.Gender.Male);
+        public static Nutrition nutri = new Nutrition(20, 220, 200, 70, 1.5, Goal.Activity.ModerateleyActive, Goal.Gender.Male); //test data
 
         public App()
         {

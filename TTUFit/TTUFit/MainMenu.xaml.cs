@@ -17,6 +17,15 @@ namespace TTUFit
             InitializeComponent();
         }
 
+        private async void NavigateMealLog_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MealLog());
+        }
+        private async void NavigateGenerateMealPlan_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GenerateMealPlan());
+        }
+
         private async void NavigateViewMacros_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ViewMacros());
